@@ -1,0 +1,44 @@
+ /*form.addEventListener("submit", async (e) => {
+       console.log("hello")
+        e.preventDefault();
+        const text = form.texte.value;
+        await fetch("/search", {
+          method: "POST",
+          body: JSON.stringify({ text }),
+          headers: { "Content-Type": "application/json" },
+        })
+          .then(async (data) => {
+            data = await data.json();
+            console.log("killua zoldyck \n");
+            console.log(data.response);
+            alert("data ==>" ,data.response)
+            for (var i = 0; i < data.response.length; i++) {
+            element = document.createElement("li");
+              link = document.createElement("a");
+              link.innerText = data.response[i];
+            element.appendChild(link);
+            list.appendChild(element);
+            }
+          /*  data.data.sort((a, b) => {
+              return b.row.nbr_occ - a.row.nbr_occ;
+            });
+            for (var i = 0; i < data.data.length; i++) {
+              element = document.createElement("li");
+              link = document.createElement("a");
+              link.innerText = data.data[i].fName;
+              link.href =
+                "file:///Users/pc/Desktop/node%20JS/AI%20TP1%20copie/uploaded_files/" +
+                data.data[i].fName;
+              console.log(link.href);
+              element.appendChild(link);
+              list.appendChild(element);
+
+              console.log("- = >> ", data.data[i].row);
+            }
+*/
+            //  location.assign('/Page');
+   /*       })
+          .catch((err) => console.log("error =  ", err));
+      });
+    </script>
+    */
