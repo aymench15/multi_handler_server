@@ -4,10 +4,41 @@ module.exports.connectDb = async () => {
     //console.log(res.rows[0].Founded);
       return res.rows[0].Founded;
   };    
+  
+module.exports.create = async (data) => {
+  const res =  await client.query(`CREATE TABLE person (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    age INTEGER
+);`); 
+
+  //console.log(res.rows[0].Founded);
+  if(res[1]) throw err
+   console.log("table created successfully !! ")
+};
+
+module.exports.insertion = async () => {
+  var res =  await client.query(`INSERT INTO person (name, age) VALUES ('John Doe', 30);`); 
+   res =  await client.query(`INSERT INTO person (name, age) VALUES ('Jane Smith', 25);`); 
+  
+
+  //console.log(res.rows[0].Founded);
+  if(res[1]) throw err
+   console.log("inserted successfully !! ")
+};
+module.exports.selection = async () => {
+  var res =  await client.query(`SELECT * FROM person;`); 
+  
+
+  //console.log(res.rows[0].Founded);
+  if(res[1]) throw err
+  for(var i = 0; i < res.rows.length; i++)
+   console.log(res.rows[i])
+};
   module.exports.existed = async (name) => {
 
     
-    const res =  await client.query(`Select "word" from Public.dictionnair where "word" = '${name}'`); 
+    const res =  await client.query(`Select "name" from test where "name" = '${name}'`); 
    // console.log(" \n => \n")
     //console.log(res.rows[0]);
     if(res.rows[0]!=undefined)
