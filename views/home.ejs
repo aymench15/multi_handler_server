@@ -15,6 +15,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <script>
       var test = document.createElement("div");
@@ -384,18 +385,18 @@
           .getElementById("test_api")
           .addEventListener("click", async (e) => {
             e.preventDefault();
-            const device_id = 5;
+            const device_id = 6;
             const lat = 33.5;
             const long = 5.5;
             const region_name = "elhadjeb"
-            const temperature = 20;
-            const humidity = 40;
-            const windspeed = 10;
+            const temperature = 20.1;
+            const humidity = 40.2;
+            const windspeed = 10.1;
             const wind_direction = 100;
-            const precipitation = 0;
-            const soil_moisture = 40;
-            const dew_points = 10
-            const uv_index = 3;
+            const precipitation = 0.0;
+            const soil_moisture = 40.2;
+            const dew_points = 10.3
+            const uv_index = 3.01;
             try {
               const res = await fetch("/push_data", {
                 method: "POST",
@@ -418,7 +419,7 @@
             }
           });
       </script>
-      <div class="container">
+      <!-- <div class="container">
         <div class="row mb-4 mt-2">
           <div class="col-sm-12 text-center align-self-center">
             <h2>
@@ -553,8 +554,17 @@
             </div>
           </div>
         </div>
+      </div> -->
+      <center>
+        <p id="coordinates">Click on the map to get coordinates</p>
+      </center>
+      <div id="containerr">
+        <div id="mapid"></div>
       </div>
-
+      
+      <style>
+      
+      </style>
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 mt-5 mb-2 text-center">
@@ -715,5 +725,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="/js/scripts.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="/js/map.js"></script>
   </body>
 </html>

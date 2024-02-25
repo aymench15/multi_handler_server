@@ -80,3 +80,23 @@ footer {
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
 }
+
+#containerr {
+    width: 960px;
+    background: rgba(11, 13, 24, 0.6);
+    margin: 50px auto;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    -ms-border-radius: 10px;
+  }
+  #mapid {
+    height: 300px;
+    width: 100%;
+  }
+  #coordinates {
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: bold;
+  }
