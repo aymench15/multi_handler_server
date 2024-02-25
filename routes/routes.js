@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const route = Router();
 //const multer = require('multer')
-const api = require('../controller/routes_impliments/apis')
+const api = require('../controller/routes_impliments/renders')
 
 
 route.get('/',api.home);
