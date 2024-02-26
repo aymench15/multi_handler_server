@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -360,7 +359,7 @@
                   <p >
                     A remote weather station powered by Arduino
                   </p>
-                  <p>&nbsp;</p>
+                  <!-- <p>&nbsp;</p> -->
                   <p>
                     <a
                       class="btn btn-success btn-lg"
@@ -575,6 +574,16 @@
       </div>
 
       <style></style>
+      <center>
+         <form>
+        <input id= "autocomplete_search",name="texte" ,type="text" , placeholder="Type a text"/>
+        <button type="button">Treat it</button>
+        <div>=
+          <ul id="list"></ul>
+        </div>
+      </form>
+      </center>
+     
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 mt-5 mb-2 text-center">
@@ -737,5 +746,6 @@
     <script src="/js/scripts.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="/js/map.js"></script>
+    <script src="/js/auto_complete.js"></script>
   </body>
 </html>

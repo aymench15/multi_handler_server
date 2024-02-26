@@ -1,4 +1,5 @@
 const client = require("../../model/dbConfig");
+const { auto_complete } = require("../routes_impliments/push_data");
 module.exports.existingDevice = async (deviceId) => {
   const existing = await client.query('SELECT device_id FROM iot_device WHERE device_id = $1', [deviceId]);
   if (existing.rowCount === 0) {
@@ -105,11 +106,15 @@ module.exports.selection = async () => {
      console.log("inserted successfully")
   };
 */
-  module.exports.AutoComplete = async (word) => {
-
-    if(word !=""){
+  module.exports.AutoComplete = async (lat,long) => {
+    console.log(lat,long)
+    lat = 33
+    long = 5
+    if(lat !=""){
     var data = [];
-    var res =  await client.query(`Select * from Public.dictionnair where "word" like '${word}%' limit 20`);
+    var res =  await client.query(`Select * from iot_device where "lat" like '${lat}%' and "long" like '${long}%' limit 20`);
+    console.log(res.rows);
+    /*
     if(res.rows.length!=0)
      { res.rows.forEach(row => {
         data.push(row.word);
@@ -142,10 +147,10 @@ i++;
       data.push(word);
       //console.log("res =>",res.rows)
       
-        }
+        }*/
       }
-       
-   return data;
+   return res.rows    
+  // return data;
   };
 
   // connectDb().then((res) => console.log(res));

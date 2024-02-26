@@ -44,6 +44,8 @@ var coordinatesList = [
     L.marker([coord.lat, coord.lng]).addTo(map);
   });
 
+  
+
 var element;
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -55,3 +57,20 @@ function getParameterValues(parameterName, timeSeries) {
   const parameter = timeSeries.parameters.find((p) => p.name === parameterName);
   return parameter ? parameter.values[0] : "-";
 }
+
+
+var lat;
+var long;
+var onMapClick = (e) => {
+
+  //marker = L.marker(e.latlng).addTo(map);
+  lat = e.latlng.lat.toFixed(6);
+  long = e.latlng.lng.toFixed(6);
+  document.getElementById("coordinates").textContent =
+    "Latitude: " +
+    e.latlng.lat.toFixed(6) +
+    ", Longitude: " +
+    e.latlng.lng.toFixed(6);
+    
+};
+map.on("click", onMapClick);
