@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded',  () => {
     fetchData();
   });
   
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
   
-  function populateTable(data) {
+  const populateTable = async (data) =>  {
     const tableBody = document.getElementById('tableBody');
     data.forEach(item => {
     
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <th scope="row">${item.device_id}</th>
         <td>${item.lat}</td>
         <td>${item.long}</td>
-        <td>${item.place || '-'}</td>
+        <td>${item.region_name || '-'}</td>
         <td>
           <button type="button" class="btn btn-outline-success">
             Show Data
