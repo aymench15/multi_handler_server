@@ -1,5 +1,7 @@
 const db = require("../db/pgQueries");
 const ft = require('../features_functionalities/auto_completion')
+
+
 module.exports.pushData_api = async (req, res) => {
     //res.render("actions");
 const result = await db.existingDevice(req.body.device_id);
@@ -14,9 +16,15 @@ else await db.insert_current_data(req.body.device_id, req.body.temperature, req.
 
   };
 
-
   module.exports.auto_complete = async (req, res) => {
    // console.log(req.body.query)
     if(req.body.query !='' )
-   await ft.auto_cmplt(req.body.query)
+    console.log('rrrrrrr ',await ft.auto_cmplt(req.body.query))  
   }
+
+
+
+  module.exports.get_all_data = async (req,res) =>{
+    console.log(await db.selectAlldata())
+   res.json(await db.selectAlldata())
+ }

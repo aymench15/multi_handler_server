@@ -28,6 +28,6 @@ module.exports.levenshteinDistance = (str1 = '', str2 = '') => {
  };
 
 module.exports.auto_cmplt = async (lat) =>{
-   await db.AutoComplete(lat)
- //console.log(res)
+   const res = await db.AutoComplete(lat)
+return res
 }

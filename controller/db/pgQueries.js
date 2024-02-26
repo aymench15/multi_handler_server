@@ -75,11 +75,12 @@ module.exports.selection = async () => {
         return {bol :false};
       }
   };  
-  module.exports.insertDb = async (data) => {
-    const res =  await client.query(`Insert into Public.dictionnair("word") VALUES('${data}')`); 
+  module.exports.selectAlldata = async () => {
+    const res =  await client.query(`Select * FROM iot_device ;`); 
     //console.log(res.rows[0].Founded);
     if(res[1]) throw err
-     console.log("inserted successfully")
+    console.log("selected successfully")
+    return res.rows
   };
   /*
   module.exports.insertNames = async () => {

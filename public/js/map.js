@@ -40,9 +40,6 @@ var coordinatesList = [
   ];
 
   // Loop through the coordinates list and add markers to the map
-  coordinatesList.forEach((coord) => {
-    L.marker([coord.lat, coord.lng]).addTo(map);
-  });
 
   
 

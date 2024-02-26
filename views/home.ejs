@@ -347,18 +347,15 @@
     </div>
 
     <header>
-      <div class="jumbotron" style="padding: 1rem;" >
+      <div class="jumbotron" style="padding: 1rem">
         <div class="container">
           <div class="row">
             <div class="col-sm-10 mx-auto text-center">
               <div class="row">
-                <div class="col-12 col-md-3 align-self-center">
-                </div>
+                <div class="col-12 col-md-3 align-self-center"></div>
                 <div>
-                  <h1 >Plant Monitoring System</h1>
-                  <p >
-                    A remote weather station powered by Arduino
-                  </p>
+                  <h1>Plant Monitoring System</h1>
+                  <p>A remote weather station powered by Arduino</p>
                   <!-- <p>&nbsp;</p> -->
                   <p>
                     <a
@@ -573,17 +570,38 @@
         <div id="mapid"></div>
       </div>
 
-      <style></style>
-      <center>
-         <form>
-        <input id= "autocomplete_search",name="texte" ,type="text" , placeholder="Type a text"/>
-        <button type="button">Treat it</button>
-        <div>=
-          <ul id="list"></ul>
-        </div>
-      </form>
+      <center id="containerr">
+        <form>
+          <div class="form-floating mb-3">
+            <input
+              id="autocomplete_search"
+              type="text"
+              name="texte"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Click map to get coordinates or type it"
+            />
+          </div>
+          <div>
+            <ul id="list"></ul>
+          </div>
+        </form>
+        <table class="table" id="deviceTable">
+          <thead>
+            <tr>
+              <th scope="col">Device ID</th>
+              <th scope="col">Lat</th>
+              <th scope="col">Long</th>
+              <th scope="col">Place</th>
+              <th scope="col">Show Data</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Table body will be dynamically inserted here -->
+          </tbody>
+        </table>
       </center>
-     
+
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 mt-5 mb-2 text-center">
@@ -747,5 +765,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="/js/map.js"></script>
     <script src="/js/auto_complete.js"></script>
+    <script src="/js/search_box.js"></script>
+    <script src="/js/get_data.js"></script>
   </body>
 </html>

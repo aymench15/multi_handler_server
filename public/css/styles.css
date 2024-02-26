@@ -83,7 +83,6 @@ footer {
 
 #containerr {
     width: 960px;
-    background: rgba(11, 13, 24, 0.6);
     margin: 50px auto;
     border-radius: 10px;
     -moz-border-radius: 10px;
@@ -100,3 +99,4 @@ footer {
     line-height: 1.8;
     font-weight: bold;
   }
+  
