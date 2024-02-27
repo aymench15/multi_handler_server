@@ -16,8 +16,8 @@ const fetchData = async () => {
         `<b>${coord.lat}</b> , <b>${coord.long}</b>  <br> <b>${coord.region_name}</b>`
       );
       marker.on("click", (e) => {
-        lat = e.latlng.lat.toFixed(3);
-        long = e.latlng.lng.toFixed(3);
+        lat = e.latlng.lat;
+        long = e.latlng.lng;
         search_element.value = `${lat},${long}`;
         load_data(search_element.value);
         marker.openPopup();
