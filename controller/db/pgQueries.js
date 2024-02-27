@@ -88,15 +88,11 @@ module.exports.selectAlldata = async () => {
 };
 
 module.exports.AutoComplete = async (lat, long) => {
-  console.log(lat, long);
-  lat = 33;
-  long = 5;
   if (lat != "") {
     var data = [];
     var res = await client.query(
-      `Select * from iot_device where "lat" like '${lat}%' and "long" like '${long}%' limit 20`
+      `Select * from current_region where "lat" like '${lat}%' and "long" like '${long}%' limit 20;`
     );
-    console.log(res.rows);
     /*
     if(res.rows.length!=0)
      { res.rows.forEach(row => {
@@ -132,6 +128,9 @@ i++;
       
         }*/
   }
+  else var res = await client.query(
+    `Select * from current_region`
+  );
   return res.rows;
   // return data;
 };

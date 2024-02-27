@@ -69,5 +69,6 @@ var onMapClick = (e) => {
     ", Longitude: " +
     e.latlng.lng.toFixed(6);
     
+    
 };
 map.on("click", onMapClick);

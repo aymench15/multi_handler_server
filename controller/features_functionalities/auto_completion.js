@@ -27,7 +27,7 @@ module.exports.levenshteinDistance = (str1 = '', str2 = '') => {
     return track[str2.length][str1.length];
  };
 
-module.exports.auto_cmplt = async (lat) =>{
-   const res = await db.AutoComplete(lat)
+module.exports.auto_cmplt = async (lat,long) =>{
+   const res = await db.AutoComplete(lat,long)
 return res
 }
