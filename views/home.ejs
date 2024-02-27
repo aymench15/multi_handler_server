@@ -570,35 +570,38 @@
 
       <center id="containerr">
         <form>
-          <div class="form-floating mb-3">
-            <input
-              id="autocomplete_search"
-              type="text"
-              name="texte"
-              class="form-control"
-              id="floatingInput"
-              placeholder="Click map to get coordinates or type it"
-            />
-          </div>
-          <div>
-            <ul id="list"></ul>
-          </div>
+            <div class="form-floating mb-3">
+                <input
+                    id="autocomplete_search"
+                    type="text"
+                    name="texte"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="Click map to get coordinates or type it"
+                />
+            </div>
+            <div class="scrollable-list">
+                <ul id="list"></ul>
+            </div>
         </form>
-        <table class="table" id="deviceTable">
-          <thead>
-            <tr>
-              <th scope="col">Device ID</th>
-              <th scope="col">Lat</th>
-              <th scope="col">Long</th>
-              <th scope="col">Place</th>
-              <th scope="col">Show Data</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody">
-            <!-- Table body will be dynamically inserted here -->
-          </tbody>
-        </table>
-      </center>
+        <div class="scrollable-table">
+            <table class="table" id="deviceTable">
+                <thead>
+                    <tr>
+                        <th scope="col">Device ID</th>
+                        <th scope="col">Lat</th>
+                        <th scope="col">Long</th>
+                        <th scope="col">Place</th>
+                        <th scope="col">Show Data</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Table body will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </center>
+    
 
       <div class="container mt-5">
         <div class="row">
