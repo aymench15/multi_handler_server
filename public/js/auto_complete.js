@@ -26,6 +26,9 @@ const load_data = async (query = "") => {
     // html += '</ul>';
     
     populateTable(responseData);
+    console.log('from load_data ',responseData)
+    console.log('from load_data ',Buttons.staticProperty)
+    handleButtonClick(Buttons.staticProperty)
   } catch (error) {
     console.error("Error fetching data:", error);
   }
