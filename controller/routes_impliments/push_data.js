@@ -17,7 +17,7 @@ module.exports.pushData_api = async (req, res) => {
         await db.insert_new_region(
           req.body.lat,
           req.body.long,
-          response.data.city,
+          response.data.city+' ('+response.data.locality+')',
           req.body.device_id
         ); // The response data
       })
@@ -52,11 +52,11 @@ module.exports.pushData_api = async (req, res) => {
           `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${req.body.lat}&longitude=${req.body.long}&localityLanguage=en`
         )
         .then(async (response) => {
-          console.log(response.data.city);
+          console.log(response.data.locality);
           await db.insert_new_region(
             req.body.lat,
             req.body.long,
-            response.data.city,
+            response.data.city+' ('+response.data.locality+')',
             req.body.device_id
           );
         })
@@ -101,10 +101,15 @@ module.exports.auto_complete = async (req, res) => {
 };
 
 module.exports.get_all_data = async (req, res) => {
-  // console.log(await db.selectAlldata());
+ // console.log(await db.selectAlldata());
 
   res.json(await db.selectAlldata());
 };
+module.exports.getforecastingdata = async (req, res) => {
+   //console.log(await db.selectAlldata());
+   res.json(await db.getForcastingData(req.body.buttonId));
+ };
+
 
 const extractWords = (str) => {
   if (str.includes(",")) {

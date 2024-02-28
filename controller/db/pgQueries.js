@@ -76,12 +76,14 @@ module.exports.getLatLng = async (id_device) => {
     `SELECT lat,long FROM current_region where device_id=${id_device};`
   );
   if (res[1]) throw err;
-  
-  return res.rows[res.rows.length-1];
+
+  return res.rows[res.rows.length - 1];
 };
 
 module.exports.selectAlldata = async () => {
-  const res = await client.query(`Select * FROM current_region;`);
+  const res =
+    await client.query(`SELECT i.device_id AS device_id, i.lat, i.long, r.region_name, r.lat, r.long, r.the_time FROM iot_device AS i JOIN LATERAL (SELECT device_id, lat, long, region_name, the_time FROM current_region WHERE device_id = i.device_id ORDER BY the_time DESC LIMIT 1) AS r ON true;
+  `);
   //console.log(res.rows[0].Founded);
   if (res[1]) throw err;
   return res.rows;
@@ -127,12 +129,21 @@ i++;
       //console.log("res =>",res.rows)
       
         }*/
-  }
-  else var res = await client.query(
-    `Select * from current_region`
-  );
+  } else
+    var res =
+      await client.query(`SELECT i.device_id AS device_id, i.lat, i.long, r.region_name, r.lat, r.long, r.the_time FROM iot_device AS i JOIN LATERAL (SELECT device_id, lat, long, region_name, the_time FROM current_region WHERE device_id = i.device_id ORDER BY the_time DESC LIMIT 1) AS r ON true;
+  `);
   return res.rows;
   // return data;
+};
+
+module.exports.getForcastingData = async (id) => {
+  const res =
+    await client.query(`SELECT * FROM data_forecasting where device_id =${id};
+  `);
+  //console.log(res.rows[0].Founded);
+  if (res[1]) throw err;
+  return res.rows;
 };
 
 // connectDb().then((res) => console.log(res));

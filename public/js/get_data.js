@@ -18,13 +18,25 @@ const fetchData = async () => {
         lat = e.latlng.lat;
         long = e.latlng.lng;
         search_element.value = `${lat},${long}`;
-        load_data(search_element.value);
+        console.log("clickes marker - ", search_element.value);
+
         marker.openPopup();
+        load_data(search_element.value);
       });
     });
 
     populateTable(data);
-    handleButtonClick("B1");
+
+    if (Buttons.staticProperty == null)
+    {
+      handleButtonClick("B1");
+      Buttons.forecast_data = get_forecast_data("B1")
+    } 
+    else
+    {
+       handleButtonClick(Buttons.staticProperty);
+       Buttons.forecast_data = get_forecast_data(Buttons.staticProperty)
+    }
   } catch (error) {
     console.error("Error fetching data:", error.message);
   }
@@ -52,49 +64,90 @@ const populateTable = async (data) => {
     const button = document.getElementById(`B${item.device_id}`);
     button.addEventListener("click", () => {
       handleButtonClick(`B${item.device_id}`);
+      Buttons.forecast_data = get_forecast_data(`B${item.device_id}`)
     });
-
-    // Initialize selectedButtonId if the button is initially selected
-    if (item.selected) {
-      Buttons.staticProperty = `B${item.device_id}`;
-    }
   });
 };
 
-const handleButtonClick = (buttonId) => {
-  console.log(buttonId);
-  if (Buttons.staticProperty === buttonId) {
-    console.log("here 1");
+const handleButtonClick = async (buttonId) => {
+  if (Buttons.staticProperty !== null) {
+    if (Buttons.staticProperty !== buttonId) {
+      if (document.getElementById(Buttons.staticProperty) != null) {
+        const button1 = document.getElementById(Buttons.staticProperty);
+
+        //button1.textContent = "Select";
+        button1.style.backgroundColor = "white";
+        button1.style.color = "green";
+        button1.classList.remove("selected");
+      }
+      const button = document.getElementById(buttonId);
+      button.textContent = "Selected";
+      button.style.backgroundColor = "green";
+      button.style.color = "white";
+      button.classList.add("selected");
+      Buttons.staticProperty = buttonId;
+    } else {
+      const button = document.getElementById(buttonId);
+      button.textContent = "Selected";
+      button.style.backgroundColor = "green";
+      button.style.color = "white";
+      button.classList.add("selected");
+      console.log("here 2  ", buttonId);
+      Buttons.staticProperty = buttonId;
+    }
+    // Deselect the currently selected button (if any)
+  } else {
+    // Select the clicked button
     const button = document.getElementById(buttonId);
+
     button.textContent = "Selected";
     button.style.backgroundColor = "green";
+    // Set text color to white
     button.style.color = "white";
     button.classList.add("selected");
+    Buttons.staticProperty = buttonId;
   }
 
-  // Deselect the currently selected button (if any)
-  if (Buttons.staticProperty !== null) {
-    console.log("here 2");
-    const button1 = document.getElementById(Buttons.staticProperty);
-    button1.textContent = "Select";
-    button1.style.backgroundColor = "white";
-    button1.style.color = "green";
-    const prevSelectedButton = document.getElementById(Buttons.staticProperty);
-    prevSelectedButton.classList.remove("selected");
-  }
-
-  console.log("here 3");
-  // Select the clicked button
-  const button = document.getElementById(buttonId);
-
-  button.textContent = "Selected";
-  button.style.backgroundColor = "green";
-  // Set text color to white
-  button.style.color = "white";
-  button.classList.add("selected");
-  Buttons.staticProperty = `${buttonId}`;
 };
+
+const get_forecast_data = async (buttonId) =>{
+  try {
+    buttonId = buttonId.match(/\d+/)[0]
+    const response = await fetch("/getforecastingdata", {
+      method: "POST",
+      body: JSON.stringify({buttonId}),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch data aimen ");
+    }
+    const data = await response.json();
+    // var container = document.getElementById("spreadsheet");
+    //             var sheet = new Handsontable(container, {
+    //               data: data,
+    //               rowHeaders: true,
+    //               colHeaders: [
+    //                 "",
+    //                 " Temperature (°C) ",
+    //                 " Humidity (%) ",
+    //                 " Moisture (%) ",
+    //                 " Sunlight (hours) ",
+    //                 " Water Level (%) ",
+    //               ],
+    //               width: "100%",
+    //               height: "100%",
+    //               stretchH: "all",
+    //               observeChanges: true,
+    //               exportFile: true,
+    //               licenseKey: "non-commercial-and-evaluation",
+    //             });
+    console.log(data);
+  } catch (error) {
+    throw new Error("Failed to bring data depend on the button selected");
+  }
+}
 
 class Buttons {
   static staticProperty = null;
+  static forecast_data = null
 }

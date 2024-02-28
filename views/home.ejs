@@ -58,16 +58,16 @@
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="actions">
             <a class="nav-link" href="/actions">Actions</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="graphs">
             <a class="nav-link" href="/graphs">Graphs</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="logs">
             <a class="nav-link" href="/logs">Logs</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="about">
             <a class="nav-link" href="/about">About</a>
           </li>
           <li class="nav-item dropdown">
@@ -381,8 +381,8 @@
           .addEventListener("click", async (e) => {
             e.preventDefault();
             const device_id = 10;
-            const lat = 34.507405;
-            const long = 5.064687;
+            const lat = 34.785070;
+            const long = 5.601072;
             const temperature = 20.1;
             const humidity = 40.2;
             const windspeed = 10.1;

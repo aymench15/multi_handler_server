@@ -26,9 +26,8 @@ const load_data = async (query = "") => {
     // html += '</ul>';
     
     populateTable(responseData);
-    console.log('from load_data ',responseData)
-    console.log('from load_data ',Buttons.staticProperty)
     handleButtonClick(Buttons.staticProperty)
+    Buttons.forecast_data = get_forecast_data(Buttons.staticProperty)
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -36,13 +35,13 @@ const load_data = async (query = "") => {
 
 var search_element = document.getElementById("autocomplete_search");
 
-search_element.addEventListener("keyup", function () {
+search_element.addEventListener("keyup",  () => {
   var query = search_element.value;
   console.log(query);
   load_data(query);
 });
 
-search_element.addEventListener("focus", function () {
+search_element.addEventListener("focus",  () => {
   var query = search_element.value;
   console.log(query);
   load_data(query);
