@@ -137,7 +137,7 @@ i++;
   // return data;
 };
 
-module.exports.getForcastingData = async (id) => {
+module.exports.getForecastingData = async (id) => {
   const res =
     await client.query(`SELECT * FROM data_forecasting where device_id =${id};
   `);

@@ -107,7 +107,7 @@ module.exports.get_all_data = async (req, res) => {
 };
 module.exports.getforecastingdata = async (req, res) => {
    //console.log(await db.selectAlldata());
-   res.json(await db.getForcastingData(req.body.buttonId));
+   res.json(await db.getForecastingData(req.body.buttonId));
  };
 
 

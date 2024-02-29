@@ -11,7 +11,9 @@ a, button {
 
 .navbar {
     background-color: #00525d;
+    padding-left: 35%; 
 }
+
 
 header > .jumbotron {
     background-color: #eaf5cf;

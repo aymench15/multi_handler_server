@@ -9,6 +9,7 @@ module.exports.home = async (req, res) => {
   res.render("home");
 };
 module.exports.actions = (req, res) => {
+  console.log(req.body.data)
   res.render("actions");
 };
 

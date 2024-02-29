@@ -27,15 +27,12 @@ const fetchData = async () => {
 
     populateTable(data);
 
-    if (Buttons.staticProperty == null)
-    {
+    if (Buttons.staticProperty == null) {
       handleButtonClick("B1");
-      Buttons.forecast_data = get_forecast_data("B1")
-    } 
-    else
-    {
-       handleButtonClick(Buttons.staticProperty);
-       Buttons.forecast_data = get_forecast_data(Buttons.staticProperty)
+      Buttons.forecast_data = get_forecast_data("B1");
+    } else {
+      handleButtonClick(Buttons.staticProperty);
+      Buttons.forecast_data = get_forecast_data(Buttons.staticProperty);
     }
   } catch (error) {
     console.error("Error fetching data:", error.message);
@@ -64,7 +61,7 @@ const populateTable = async (data) => {
     const button = document.getElementById(`B${item.device_id}`);
     button.addEventListener("click", () => {
       handleButtonClick(`B${item.device_id}`);
-      Buttons.forecast_data = get_forecast_data(`B${item.device_id}`)
+      Buttons.forecast_data = get_forecast_data(`B${item.device_id}`);
     });
   });
 };
@@ -107,47 +104,30 @@ const handleButtonClick = async (buttonId) => {
     button.classList.add("selected");
     Buttons.staticProperty = buttonId;
   }
-
 };
 
-const get_forecast_data = async (buttonId) =>{
+const get_forecast_data = async (buttonId) => {
   try {
-    buttonId = buttonId.match(/\d+/)[0]
+    buttonId = buttonId.match(/\d+/)[0];
     const response = await fetch("/getforecastingdata", {
       method: "POST",
-      body: JSON.stringify({buttonId}),
+      body: JSON.stringify({ buttonId }),
       headers: { "Content-Type": "application/json" },
     });
     if (!response.ok) {
       throw new Error("Failed to fetch data aimen ");
     }
     const data = await response.json();
-    // var container = document.getElementById("spreadsheet");
-    //             var sheet = new Handsontable(container, {
-    //               data: data,
-    //               rowHeaders: true,
-    //               colHeaders: [
-    //                 "",
-    //                 " Temperature (°C) ",
-    //                 " Humidity (%) ",
-    //                 " Moisture (%) ",
-    //                 " Sunlight (hours) ",
-    //                 " Water Level (%) ",
-    //               ],
-    //               width: "100%",
-    //               height: "100%",
-    //               stretchH: "all",
-    //               observeChanges: true,
-    //               exportFile: true,
-    //               licenseKey: "non-commercial-and-evaluation",
-    //             });
+    localStorage.setItem("logdata", JSON.stringify(data));
+    // Buttons.forecast_data = data
+
     console.log(data);
   } catch (error) {
     throw new Error("Failed to bring data depend on the button selected");
   }
-}
+};
 
 class Buttons {
   static staticProperty = null;
-  static forecast_data = null
+  static forecast_data = null;
 }
