@@ -9,7 +9,6 @@ module.exports.home = async (req, res) => {
   res.render("home");
 };
 module.exports.actions = (req, res) => {
-  console.log(req.body.data)
   res.render("actions");
 };
 
@@ -34,6 +33,6 @@ module.exports.temperature = (req, res) => {
 module.exports.humidity = (req, res) => {
   res.render("humidity");
 };
-module.exports.sunlight = (req, res) => {
-  res.render("sunlight");
+module.exports.windspeed = (req, res) => {
+  res.render("windspeed");
 };

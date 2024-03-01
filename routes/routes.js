@@ -13,7 +13,7 @@ route.get('/about',api.about);
 route.get('/moisture',api.moisture);
 route.get('/temperature',api.temperature);
 route.get('/humidity',api.humidity);
-route.get('/sunlight',api.sunlight);
+route.get('/windspeed',api.windspeed);
 //route.get('/',api.home);
 //route.post('/search',search_controller.postSearch);
 //route.get('/send',process_controller.getSend);

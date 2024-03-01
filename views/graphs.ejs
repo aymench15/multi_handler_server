@@ -86,7 +86,7 @@
               <a class="dropdown-item" href="/temperature">Temperature</a>
               <a class="dropdown-item" href="/humidity">Humidity</a>
               <a class="dropdown-item" href="/moisture">Moisture</a>
-              <a class="dropdown-item" href="/sunlight">Sunlight</a>
+              <a class="dropdown-item" href="/windspeed">windspeed</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/watertank">Water Tank</a>
             </div>
@@ -94,8 +94,8 @@
         </ul>
       </div>
     </nav>
-    <%- include('partials/decore.ejs') %> <%-
-    include('partials/jumbotron.ejs') %>
+    <%- include('partials/decore.ejs') %> <%- include('partials/jumbotron.ejs')
+    %>
     <section>
       <div class="container">
         <div class="row">
@@ -117,10 +117,12 @@
             <div class="media mt-5 mb-5">
               <div class="row">
                 <div class="col-md-6 mr-md-3 mx-auto" style="overflow: auto">
-                  <div
+                  <canvas
                     class="align-self-center shadow my-3 mb-4"
                     id="overall_graph"
-                  ></div>
+                    height="300"
+                    width="550"
+                  ></canvas>
                 </div>
                 <div class="media-body col-md-6">
                   <h5 class="mt-3 mb-4">Health Graph</h5>
@@ -189,10 +191,14 @@
             <div class="media mt-5 mb-5">
               <div class="row">
                 <div class="col-md-6 mr-md-3 mx-auto" style="overflow: auto">
-                  <div
-                    class="align-self-center shadow my-3 mb-4"
-                    id="humidity_graph"
-                  ></div>
+                  <div>
+                    <canvas
+                      class="align-self-center shadow my-3 mb-4"
+                      id="humidity_graph"
+                      height="300"
+                      width="550"
+                    ></canvas>
+                  </div>
                 </div>
                 <div class="media-body col-md-6">
                   <h5 class="mt-3 mb-4">Humidity Graph</h5>
@@ -243,10 +249,14 @@
                   <p>&nbsp; Dangerously Low Soil Moisture: Below 70%</p>
                 </div>
                 <div class="col-md-6 ml-md-3 mx-auto" style="overflow: auto">
-                  <div
-                    class="align-self-center shadow my-3 mb-4"
-                    id="moisture_graph"
-                  ></div>
+                  <div>
+                    <canvas
+                      class="align-self-center shadow my-3 mb-4"
+                      id="moisture_graph"
+                      height="300"
+                      width="550"
+                    ></canvas>
+                  </div>
                 </div>
               </div>
             </div>
@@ -260,14 +270,14 @@
                   <div>
                     <canvas
                       class="align-self-center shadow my-3 mb-4"
-                      id="sunlight_graph"
+                      id="windspeed_graph"
                       height="300"
                       width="550"
                     ></canvas>
                   </div>
                 </div>
                 <div class="media-body col-md-6">
-                  <h5 class="mt-3 mb-4">Sunlight Graph</h5>
+                  <h5 class="mt-3 mb-4">Windspeed Graph</h5>
                   <p>
                     Roses require considerable light to be able to flower. Their
                     flowering ability is reduced in direct proportion to reduced
@@ -298,7 +308,7 @@
             <div class="media mt-5 mb-5">
               <div class="row">
                 <div class="media-body col-md-6">
-                  <h5 class="mb-3 mt-4">Water Level Graph</h5>
+                  <h5 class="mb-3 mt-4">Precipitation Graph</h5>
                   <p>
                     For roses the broad, basic requirement is 10 litres per
                     plant per week. This varies according to the size of the
@@ -318,10 +328,14 @@
                   </p>
                 </div>
                 <div class="col-md-6 ml-md-3 mx-auto" style="overflow: auto">
-                  <div
-                    class="align-self-center shadow my-3 mb-4"
-                    id="waterlevel_graph"
-                  ></div>
+                  <div>
+                    <canvas
+                      class="align-self-center shadow my-3 mb-4"
+                      id="precipitation_graph"
+                      height="300"
+                      width="550"
+                    ></canvas>
+                  </div>
                 </div>
               </div>
             </div>

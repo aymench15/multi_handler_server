@@ -91,7 +91,7 @@
               <a class="dropdown-item" href="/humidity">Humidity</a>
               <a class="dropdown-item" href="/moisture">Moisture</a>
               <a class="dropdown-item" href="#"
-                >Sunlight<span class="sr-only">(current)</span></a
+                >windspeed<span class="sr-only">(current)</span></a
               >
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/watertank">Water Tank</a>
@@ -100,7 +100,7 @@
         </ul>
       </div>
     </nav>
-    <%-- include('partials/decore.ejs') %> <%--
+    <%- include('partials/decore.ejs') %> <%-
     include('partials/jumbotron.ejs') %>
     <section>
       <div class="container">
@@ -114,7 +114,7 @@
                 width="30px"
                 src="/svg/status.svg"
                 data-holder-rendered="true"
-              />Sunlight
+              />windspeed
             </h2>
           </div>
         </div>
@@ -124,14 +124,14 @@
               <div class="col-6">
                 <img
                   class="rounded-circle mb-2"
-                  alt="sunlight icon"
+                  alt="windspeed icon"
                   height="140px"
                   width="140px"
-                  src="/svg/sunlight.svg"
+                  src="/svg/windspeed.svg"
                   data-holder-rendered="true"
                 />
               </div>
-              <div class="col-6 align-self-center" id="sunlight"></div>
+              <div class="col-6 align-self-center" id="windspeed"></div>
             </div>
           </div>
         </div>
@@ -139,7 +139,7 @@
           <div class="media mt-5 mb-5">
             <div class="row">
               <div class="media-body col-md-6">
-                <h5 class="mb-3 mt-4">Sunlight Graph</h5>
+                <h5 class="mb-3 mt-4">windspeed Graph</h5>
                 <p>
                   Roses require considerable light to be able to flower. Their
                   flowering ability is reduced in direct proportion to reduced
@@ -161,10 +161,12 @@
                 </p>
               </div>
               <div class="col-md-6 ml-md-3 mx-auto" style="overflow: auto">
-                <div
+                <canvas
                   class="align-self-center shadow my-3 mb-4"
-                  id="sunlight_graph"
-                ></div>
+                  id="windspeed_page_graph"
+                  height="300"
+                  width="550"
+                ></canvas>
               </div>
             </div>
           </div>
@@ -174,17 +176,17 @@
             class="col-12 col-md-6 col-lg-4 offset-lg-2 mb-5 py-3"
             style="height: 430px"
           >
-            <div id="sunlight_spreadsheet"></div>
+            <div id="windspeed_spreadsheet"></div>
           </div>
           <div class="col-12 col-md-6 col-lg-4 mt-2">
-            <h5>Sunlight Logs</h5>
+            <h5>windspeed Logs</h5>
             <p>
               These are the values collected by the weather station during
               operation. The data is stored remotely on a server and is retained
               for 30 days.
             </p>
             <div class="align-self-center text-center">
-              <button class="btn btn-dark my-3" id="sunlightdownloadButton">
+              <button class="btn btn-dark my-3" id="windspeeddownloadButton">
                 Download Logs
               </button>
             </div>
@@ -245,6 +247,14 @@
       integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ="
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
     <script src="/js/scripts.js"></script>
+
+    <script src="/js/get_data.js"></script>
+    <script src="/js/logs.js"></script>
+    <script src="/js/graphs_charts.js"></script>
+    <script src="/js/windspeed_graph.js"></script>
   </body>
 </html>

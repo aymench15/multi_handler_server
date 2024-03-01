@@ -312,32 +312,32 @@
 //                 tot_current[7] >= minimum[3] &&
 //                 tot_current[7] <= maximum[3]
 //               ) {
-//                 $("#sunlight")(
+//                 $("#windspeed")(
 //                   '<div style="color: green;"><p><h3>' +
 //                     tot_current[7] +
 //                     " hours</h3></p><p>Sunny Day</p></div>"
 //                 );
 //               } else if (tot_current[7] < minimum[3]) {
-//                 $("#sunlight")(
+//                 $("#windspeed")(
 //                   '<div style="color: blue;"><p><h3>' +
 //                     tot_current[7] +
 //                     " hours</h3></p><p>Overcast</p></div>"
 //                 );
 //               } else if (tot_current[7] > maximum[3]) {
-//                 $("#sunlight")(
+//                 $("#windspeed")(
 //                   '<div style="color: red;"><p><h3>' +
 //                     tot_current[7] +
-//                     " hours</h3></p><p>Too much Sunlight</p></div>"
+//                     " hours</h3></p><p>Too much windspeed</p></div>"
 //                 );
 //               } else {
-//                 $("#sunlight")(
+//                 $("#windspeed")(
 //                   '<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>' +
 //                     tot_current[7] +
 //                     "</p></div>"
 //                 );
 //               }
 //             } else {
-//               $("#sunlight")(
+//               $("#windspeed")(
 //                 "<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"
 //               );
 //             }
@@ -483,8 +483,8 @@
 //                         true
 //                       );
 //                     }
-//                     if ($("#sunlight_graph").length) {
-//                       sunlight_graph.series[0].addPoint(
+//                     if ($("#windspeed_graph").length) {
+//                       windspeed_graph.series[0].addPoint(
 //                         [time, latest[7]],
 //                         true,
 //                         true
@@ -518,7 +518,7 @@
 //                 " Temperature (°C) ",
 //                 " Humidity (%) ",
 //                 " Moisture (%) ",
-//                 " Sunlight (hours) ",
+//                 " windspeed (hours) ",
 //                 " Water Level (%) ",
 //               ],
 //               width: "100%",
@@ -605,12 +605,12 @@
 //               .downloadFile("csv", { filename: "PMS Moisture Logs" });
 //           });
 
-//           if ($("#sunlight_spreadsheet").length) {
-//             var container = document.getElementById("sunlight_spreadsheet");
+//           if ($("#windspeed_spreadsheet").length) {
+//             var container = document.getElementById("windspeed_spreadsheet");
 //             var sheet = new Handsontable(container, {
 //               data: sheetslogs,
 //               rowHeaders: true,
-//               colHeaders: ["", " Sunlight (hours) "],
+//               colHeaders: ["", " windspeed (hours) "],
 //               width: "100%",
 //               height: "100%",
 //               stretchH: "all",
@@ -622,10 +622,10 @@
 //             });
 //           }
 
-//           $("#sunlightdownloadButton").click(function () {
+//           $("#windspeeddownloadButton").click(function () {
 //             sheet
 //               .getPlugin("exportFile")
-//               .downloadFile("csv", { filename: "PMS Sunlight Logs" });
+//               .downloadFile("csv", { filename: "PMS windspeed Logs" });
 //           });
 
 //           if ($("#waterlevel_spreadsheet").length) {
@@ -672,7 +672,7 @@
 //                   "Temperature",
 //                   "Humidity",
 //                   "Soil Moisture",
-//                   "Sunlight",
+//                   "windspeed",
 //                   "Water Level",
 //                 ],
 //                 tickmarkPlacement: "on",
@@ -906,8 +906,8 @@
 //             });
 //           }
 
-//           if ($("#sunlight_graph").length) {
-//             var sunlight_graph = Highcharts.chart("sunlight_graph", {
+//           if ($("#windspeed_graph").length) {
+//             var windspeed_graph = Highcharts.chart("windspeed_graph", {
 //               chart: {
 //                 type: "line",
 //                 animation: Highcharts.svg, // don't animate in old IE
@@ -929,7 +929,7 @@
 
 //               yAxis: {
 //                 title: {
-//                   text: "Sunlight in hours/day",
+//                   text: "windspeed in hours/day",
 //                 },
 //                 min: 0,
 //                 max: 10,
@@ -953,7 +953,7 @@
 
 //               series: [
 //                 {
-//                   name: "sunlight",
+//                   name: "windspeed",
 //                   data: logs
 //                     .map(function (log) {
 //                       return [new Date(log[0]).getTime(), log[4]];
@@ -1165,32 +1165,32 @@
 
 //       if (current[7] != "NA") {
 //         if (current[7] >= min[3] && current[7] <= max[3]) {
-//           $("#sunlight")(
+//           $("#windspeed")(
 //             '<div style="color: green;"><p><h3>' +
 //               current[7] +
 //               " hours</h3></p><p>Sunny Day</p></div>"
 //           );
 //         } else if (current[7] < min[3]) {
-//           $("#sunlight")(
+//           $("#windspeed")(
 //             '<div style="color: blue;"><p><h3>' +
 //               current[7] +
 //               " hours</h3></p><p>Overcast</p></div>"
 //           );
 //         } else if (current[7] > max[3]) {
-//           $("#sunlight")(
+//           $("#windspeed")(
 //             '<div style="color: red;"><p><h3>' +
 //               current[7] +
-//               " hours</h3></p><p>Too much Sunlight</p></div>"
+//               " hours</h3></p><p>Too much windspeed</p></div>"
 //           );
 //         } else {
-//           $("#sunlight")(
+//           $("#windspeed")(
 //             '<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>' +
 //               current[7] +
 //               "</p></div>"
 //           );
 //         }
 //       } else {
-//         $("#sunlight")(
+//         $("#windspeed")(
 //           "<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"
 //         );
 //       }
