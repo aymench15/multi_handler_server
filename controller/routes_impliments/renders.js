@@ -18,6 +18,9 @@ module.exports.graphs = (req, res) => {
 module.exports.logs = (req, res) => {
   res.render("logs");
 };
+module.exports.ai_models = (req, res) => {
+  res.render("ai_models");
+};
 module.exports.about = (req, res) => {
   res.render("about");
 };

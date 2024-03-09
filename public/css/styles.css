@@ -93,7 +93,7 @@ footer {
     -ms-border-radius: 10px;
   }
   #mapid {
-    height: 300px;
+    height: 400px;
     width: 100%;
   }
   #coordinates {
@@ -112,3 +112,17 @@ footer {
     overflow-y: scroll; /* Always show scrollbar */
     position: relative; /* Required for absolute positioning */
 }
+
+
+
+.icon-container{
+    width: 20px; 
+    color: rgb(99, 196, 180);
+   margin: 3px;
+}
+.state{
+    
+      display: flex;
+    align-items: center;
+}
+  

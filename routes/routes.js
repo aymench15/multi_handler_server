@@ -8,6 +8,7 @@ route.get('/',api.home);
 route.get('/graphs',api.graphs);
 route.get('/actions',api.actions);
 route.get('/logs',api.logs);
+route.get('/ai_models',api.ai_models);
 route.get('/details',api.details);
 route.get('/about',api.about);
 route.get('/moisture',api.moisture);
