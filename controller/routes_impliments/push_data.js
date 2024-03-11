@@ -118,3 +118,16 @@ const extractWords = (str) => {
 
   return [str, ""];
 };
+
+
+
+module.exports.push_deployed_models = async (req, res) => {
+await db.insert_new_model(req.body.model_name,req.body.model_url,req.body.model_description)
+}
+
+
+module.exports.get_model_data = async (req, res) => {
+  // console.log(await db.selectModeldata());
+ 
+   res.json(await db.selectModeldata());
+ };

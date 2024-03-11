@@ -147,3 +147,25 @@ module.exports.getForecastingData = async (id) => {
 };
 
 // connectDb().then((res) => console.log(res));
+
+module.exports.insert_new_model = async (service_name, url, description) => {
+  const res = await client.query(
+    "INSERT INTO models (service_name, status, last_deployed,url,description) VALUES ($1,'Deployed',CURRENT_TIMESTAMP,$2,$3);",
+    [service_name, url, description]
+  );
+
+  //console.log(res.rows[0].Founded);
+  if (res[1]) throw err;
+  console.log("New Model data inserted successfully !! ");
+};
+
+
+
+module.exports.selectModeldata = async () => {
+  const res =
+    await client.query(`SELECT * FROM models;
+  `);
+  //console.log(res.rows[0].Founded);
+  if (res[1]) throw err;
+  return res.rows;
+};

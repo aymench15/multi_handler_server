@@ -125,4 +125,16 @@ footer {
       display: flex;
     align-items: center;
 }
+
+.status_box{
+    display: block;
+}
+#deployment_state{
+ 
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px; /* Add some padding for better visibility */
+    border-radius: 5px; /* Rounded corners */
+
+}
   

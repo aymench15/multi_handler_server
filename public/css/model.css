@@ -153,3 +153,11 @@ body {
 .as-sortable-drag {
   opacity: .8
 }
+#deployment_state{
+ 
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px; /* Add some padding for better visibility */
+    border-radius: 5px; /* Rounded corners */
+
+}

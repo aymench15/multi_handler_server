@@ -130,7 +130,8 @@
             </h2>
           </div>
         </div>
-      
+        
+       <center> <div id="deployment_state"></div></center>
 
         <div class="accordion" id="accordionPanelsStayOpenExample">
           <div class="accordion-item">
@@ -148,24 +149,10 @@
       <th scope="col">Service Name</th>
       <th scope="col">Status</th>
       <th scope="col">Last Deployed</th>
+      <th scope="col">Description</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Bouferoua</td>
-      <td>
-        <div class="state">
-        <div class="icon-container">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="block w-4.5 h-4.5 flex-shrink-0 text-green-700 stroke-[1.8]"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-      
-      </div>
-       Deployed
-    </div>
-      </td>
-      
-      <td>6 days ago</td>
-    </tr>
+  <tbody  id="model_table">
   </tbody>
 </table>
               </div>
@@ -188,19 +175,8 @@
       <th scope="col">Update</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Bouferoua
-      </td>
-     <td><div class="mb-3">
-      <label for="formFile" class="form-label"></label>
-      <input class="form-control" type="file" id="formFile">
-    </div></td>
-    <td>
-      <button type="button" class="btn btn-success">Deploy</button>
-    </td>
-    </tr>
+  <tbody id="model_table2">
+   
   </tbody>
 </table>
               </div>
@@ -214,19 +190,25 @@
             </h2>
             <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
               <div class="accordion-body">
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">Model Name</label>
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Name your of the work">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Model Name</span>
+                  <input type="text" id="model_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Model URL</span>
+                  <input type="text" id="model_url" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
-                <div class="mb-3">
-                  <label for="formFile" class="form-label">Upload your model or drag drop it</label>
-                  <input class="form-control" type="file" id="formFile">
+                <div class="input-group mb-3">
+                  <input type="file" class="form-control" id="inputGroupFile02">
+                  <label class="input-group-text" for="inputGroupFile02">Upload Model or Drop It</label>
                 </div>
-                <button type="button" class="btn btn-success">Deploy</button>
+
+                <div class="input-group">
+                  <span class="input-group-text">Description</span>
+                  <textarea class="form-control" aria-label="With textarea" id="model_description"></textarea>
+                </div>
+                <br>
+                <button type="button" id="new_model" class="btn btn-success">Deploy</button>
               </div>
             </div>
           </div>
@@ -260,5 +242,6 @@
     <script src="/js/scripts.js"></script>
     <script src="/js/logs.js"></script>
     <script src="/js/get_data.js"></script>
+    <script src="/js/ai_model.js"></script>
   </body>
 </html>
