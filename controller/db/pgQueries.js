@@ -170,3 +170,14 @@ module.exports.selectModeldata = async () => {
   if (res[1]) throw err;
   return res.rows;
 };
+
+
+module.exports.login = async () =>{
+  const res = await client.query(
+    "SELECT * from admin_log;",
+  );
+
+  //console.log(res.rows[0].Founded);
+  if (res[1]) throw err;
+  return res.rows[0];
+}

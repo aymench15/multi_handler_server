@@ -2,9 +2,9 @@ const {Router} = require('express');
 const route = Router();
 //const multer = require('multer')
 const api = require('../controller/routes_impliments/renders')
+const authVer = require('../protectRoutes/protect_verify');
 
-
-route.get('/',api.home);
+route.get('/',authVer,api.home);
 route.get('/graphs',api.graphs);
 route.get('/actions',api.actions);
 route.get('/logs',api.logs);

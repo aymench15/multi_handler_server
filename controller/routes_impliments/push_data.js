@@ -2,8 +2,10 @@ const db = require("../db/pgQueries");
 const ft = require("../features_functionalities/auto_completion");
 const axios = require("axios");
 const check = require("../features_functionalities/check_lat_long");
-const fs = require('fs');
-const readline = require('readline');
+const fs = require("fs");
+const readline = require("readline");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 module.exports.pushData_api = async (req, res) => {
   //res.render("actions");
 
@@ -19,7 +21,7 @@ module.exports.pushData_api = async (req, res) => {
         await db.insert_new_region(
           req.body.lat,
           req.body.long,
-          response.data.city+' ('+response.data.locality+')',
+          response.data.city + " (" + response.data.locality + ")",
           req.body.device_id
         ); // The response data
       })
@@ -58,7 +60,7 @@ module.exports.pushData_api = async (req, res) => {
           await db.insert_new_region(
             req.body.lat,
             req.body.long,
-            response.data.city+' ('+response.data.locality+')',
+            response.data.city + " (" + response.data.locality + ")",
             req.body.device_id
           );
         })
@@ -104,15 +106,14 @@ module.exports.auto_complete = async (req, res) => {
 };
 
 module.exports.get_all_data = async (req, res) => {
- // console.log(await db.selectAlldata());
+  // console.log(await db.selectAlldata());
 
   res.json(await db.selectAlldata());
 };
 module.exports.getforecastingdata = async (req, res) => {
-   //console.log(await db.selectAlldata());
-   res.json(await db.getForecastingData(req.body.buttonId));
- };
-
+  //console.log(await db.selectAlldata());
+  res.json(await db.getForecastingData(req.body.buttonId));
+};
 
 const extractWords = (str) => {
   if (str.includes(",")) {
@@ -122,44 +123,45 @@ const extractWords = (str) => {
   return [str, ""];
 };
 
-
-
 module.exports.push_deployed_models = async (req, res) => {
-await db.insert_new_model(req.body.model_name,req.body.model_url,req.body.model_description)
-}
-
+  await db.insert_new_model(
+    req.body.model_name,
+    req.body.model_url,
+    req.body.model_description
+  );
+};
 
 module.exports.get_model_data = async (req, res) => {
   // console.log(await db.selectModeldata());
-  
-   res.json(await db.selectModeldata());
- };
 
+  res.json(await db.selectModeldata());
+};
 
-
- module.exports.get_data_for_prediction = async (req,res) =>{
-  const data = await db.getForecastingData(1)
-  if(data.length / 12 >= 90){
-      console.log("send the data to do prediciton")
-  }
-  else{
+module.exports.get_data_for_prediction = async (req, res) => {
+  const data = await db.getForecastingData(1);
+  if (data.length / 12 >= 90) {
+    console.log("send the data to do prediciton");
+  } else {
     const firstRecordDate = data[0].timestamp;
     const result = calculateMissingDates(firstRecordDate);
-    const start = result.firstMissingDate.slice(0, 10).replace(/-/g, '')
-    const end = result.lastMissingDate.slice(0, 10).replace(/-/g, '')
-    await axios.get(`https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M&community=SB&longitude=5.6&latitude=34.5&start=${start}&end=${end}&format=JSON`).then((data =>{
-      console.log(data.data.properties.parameter)
-    }))
-
+    const start = result.firstMissingDate.slice(0, 10).replace(/-/g, "");
+    const end = result.lastMissingDate.slice(0, 10).replace(/-/g, "");
+    await axios
+      .get(
+        `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M&community=SB&longitude=5.6&latitude=34.5&start=${start}&end=${end}&format=JSON`
+      )
+      .then((data) => {
+        console.log(data.data.properties.parameter);
+      });
   }
   // data.forEach((row) => {
   //   console.log(row.timestamp)
   // })
-  console.log(data[0].timestamp)
+  console.log(data[0].timestamp);
   return res.json(data);
- }
+};
 
-const calculateMissingDates = (firstRecordDate) =>{
+const calculateMissingDates = (firstRecordDate) => {
   const currentDate = new Date();
   //const currentDate = new Date('2024-03-14T23:32:20.714Z');
   // Calculate the difference in milliseconds
@@ -167,34 +169,54 @@ const calculateMissingDates = (firstRecordDate) =>{
   console.log(differenceInMs);
   // Convert milliseconds to days
   const differenceInDays = Math.ceil(differenceInMs / (1000 * 60 * 60 * 24));
-  console.log(differenceInDays)
+  console.log(differenceInDays);
 
   if (differenceInDays < 90) {
-      // Calculate the number of missing records
-      const missingRecords = 90 - differenceInDays;
+    // Calculate the number of missing records
+    const missingRecords = 90 - differenceInDays;
 
-      // Calculate the date of the last record before the missing ones
-      const startDate = new Date(firstRecordDate);
-      startDate.setDate(startDate.getDate() - missingRecords);
+    // Calculate the date of the last record before the missing ones
+    const startDate = new Date(firstRecordDate);
+    startDate.setDate(startDate.getDate() - missingRecords);
 
-      // Calculate the date where, after adding 90 days' worth of records, you would have continuous data
-      const endDate = new Date(firstRecordDate);
-      endDate.setDate(endDate.getDate() - 1);
+    // Calculate the date where, after adding 90 days' worth of records, you would have continuous data
+    const endDate = new Date(firstRecordDate);
+    endDate.setDate(endDate.getDate() - 1);
 
-      return { firstMissingDate: startDate.toISOString().split('T')[0], lastMissingDate: endDate.toISOString().split('T')[0] };
+    return {
+      firstMissingDate: startDate.toISOString().split("T")[0],
+      lastMissingDate: endDate.toISOString().split("T")[0],
+    };
   } else {
-      // Sufficient data present
-      return { verificationStatus: 'You have sufficient data to do the prediction' };
+    // Sufficient data present
+    return {
+      verificationStatus: "You have sufficient data to do the prediction",
+    };
   }
-}
+};
 
+module.exports.post_login = async (req, res) => {
+  const maxAge = 24 * 60 * 60 * 1000;
+  const pass = await db.login();
+  await bcrypt.compare(req.body.password, pass.password).then((equal) => {
+    if (equal) {
+      const id = 1;
+      const token = jwt.sign({ id: id }, process.env.TOKEN_SECRET);
+      res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge });
+      req.flash("success_msg", "Succes");
+      res.status(201).json({ succes: "successfully" });
+    } else {
+      console.log("reached");
+      req.flash("error_msg", "Sign in Failed");
+      res.json({ error: "Password is wrong" });
+    }
+  });
+};
 
-
-module.exports.post_login = (req,res) =>{
-  console.log(req.body.password)
-}
-
-
+module.exports.getSignOut = (req, res) => {
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.status(200).redirect("/");
+};
 // const csvFilePath = 'Hadjeb.csv'; // Replace this with your CSV file path
 
 // // Read the CSV file line by line
