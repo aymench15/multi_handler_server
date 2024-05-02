@@ -45,6 +45,7 @@ p > .btn-link,p > .btn-link:hover, p > .btn-link:active,p > .btn-link:visited  {
 
 footer {
     background-color: #448087;
+    color: white;
 }
 
 /*High Chart*/

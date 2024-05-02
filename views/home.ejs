@@ -114,42 +114,121 @@
 
     <section>
       <!-- <button id="test_api">test api</button> -->
+      <input type="file" id="fileInput" accept=".csv">
       <script>
-        document
-          .getElementById("test_api")
-          .addEventListener("click", async (e) => {
-            e.preventDefault();
-            const device_id = 11;
-            const lat = 34.850139;
-            const long = 5.747078;
-            const temperature = 20.1;
-            const humidity = 40.2;
-            const windspeed = 10.1;
-            const wind_direction = 100;
-            const precipitation = 0.0;
-            const soil_moisture = 40.2;
-            const dew_points = 10.3;
-            const uv_index = 3.01;
-            try {
-              const res = await fetch("/push_data", {
-                method: "POST",
-                body: JSON.stringify({
-                  device_id,
-                  lat,
-                  long,
-                  temperature,
-                  humidity,
-                  windspeed,
-                  wind_direction,
-                  precipitation,
-                  soil_moisture,
-                  dew_points,
-                  uv_index,
-                }),
-                headers: { "Content-Type": "application/json" },
-              });
-              const data = await res.json();
-              console.log(data);
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+function handleFileSelect(event) {
+  const file = event.target.files[0];
+  if (!file) {
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    const csvData = e.target.result;
+    const rows = csvData.trim().split('\n');
+
+    // Define index variable to keep track of current row
+    let currentIndex = 0;
+
+    // Function to send data to server
+    function sendDataToServer() {
+      // Check if all rows have been sent
+      if (currentIndex >= rows.length) {
+        clearInterval(interval); // Stop interval
+        return;
+      }
+
+      const row = rows[currentIndex].trim().split(',');
+      console.log('Sending data:', row);
+        const device_id = parseInt(row[0]);
+        const lat = parseFloat(row[1]);
+        const long = parseFloat(row[2]);
+        const temperature = parseFloat(row[3]);
+        const humidity = parseFloat(row[4]);
+        const windspeed = parseFloat(row[5]);
+        const wind_direction = parseFloat(row[6]);
+        const precipitation = parseFloat(row[7]);
+        const soil_moisture = parseFloat(row[8]);
+        const dew_points = parseFloat(row[9]);
+        const uv_index = 2;
+        console.log(device_id,lat,long)
+      // Send data to server using fetch API
+      fetch('/push_data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({device_id,
+          lat,
+          long,
+          temperature,
+          humidity,
+          windspeed,
+          wind_direction,
+          precipitation,
+          soil_moisture,
+          dew_points,
+         uv_index,})
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        console.log('Data sent successfully');
+      })
+      .catch(error => {
+        console.error('Error sending data:', error.message);
+      });
+
+      // Move to the next row
+      currentIndex++;
+    }
+
+    // Call sendDataToServer function every second
+    const interval = setInterval(sendDataToServer, 1000);
+  };
+
+  reader.readAsText(file);
+}
+       // document
+       //   .getElementById("test_api")
+       //   .addEventListener("click", async (e) => {
+        //    e.preventDefault();
+
+           // const device_id = 11;
+           // const lat = 34.850139;
+           // const long = 5.747078;
+           // const temperature = 20.1;
+            //const humidity = 40.2;
+            //const windspeed = 10.1;
+           // const wind_direction = 100;
+           // const precipitation = 0.0;
+           // const soil_moisture = 40.2;
+           // const dew_points = 10.3;
+           // const uv_index = 3.01;
+            //try {
+             // const res = await fetch("/predict");
+             // const res = await fetch("/push_data", {
+             //   method: "POST",
+              //  body: JSON.stringify({
+              //    device_id,
+               //   lat,
+               //   long,
+               //   temperature,
+                //  humidity,
+                //  windspeed,
+                //  wind_direction,
+                //  precipitation,
+                //  soil_moisture,
+                //  dew_points,
+                //  uv_index,
+             //   }),
+              //  headers: { "Content-Type": "application/json" },
+             // });
+             // const data = await res.json();
+           //   console.log(data);
               //  if (data.user) {
               // success.textContent='login successfully you will move to home page in 5 secodes';
               //     setTimeout(() => {
@@ -158,11 +237,11 @@
               //     }, 2000);
               //  }
               //console.log('stop here !!')
-            } catch (err) {
-              console.log("error is happend when i sent a request");
-              console.log("error is = ", err);
-            }
-          });
+            //} catch (err) {
+             // console.log("error is happend when i sent a request");
+            //  console.log("error is = ", err);
+        //    }
+        //  });
       </script>
       <!-- <div class="container">
         <div class="row mb-4 mt-2">

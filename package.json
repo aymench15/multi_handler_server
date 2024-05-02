@@ -12,7 +12,6 @@
   "author": "Aimen",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.8.3",
     "axios": "^1.6.7",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.0",

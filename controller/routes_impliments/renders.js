@@ -39,3 +39,7 @@ module.exports.humidity = (req, res) => {
 module.exports.windspeed = (req, res) => {
   res.render("windspeed");
 };
+
+module.exports.login = (req, res) => {
+  res.render("login");
+};

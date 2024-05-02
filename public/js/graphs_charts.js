@@ -21,6 +21,7 @@ log.forEach((element) => {
   hum_page.push(element.humidity);
   temp.push(element.temperature);
   temp_page.push(element.temperature);
+  console.log(element.soil_moisture)
   moisture.push(element.soil_moisture);
   moisture_page.push(element.soil_moisture)
   wind.push(element.windspeed);
@@ -68,7 +69,7 @@ const data_overall = {
     },
     {
       label: "Windspeed",
-      data: hum,
+      data: wind,
       fill: true,
       backgroundColor: "rgba(149, 220, 216, 1)",
       borderColor: "rgba(8, 213, 215, 1)",
@@ -106,25 +107,6 @@ const config_overall = {
 
 new Chart(document.getElementById("overall_graph"), config_overall);
 
-const data_moist = {
-  labels: timePart,
-  datasets: [
-    {
-      label: "Date : " + datePart,
-      data: moisture,
-      fill: false,
-      borderColor: "rgb(75, 192, 192)",
-      tension: 0.1,
-    },
-  ],
-};
-
-// Configuration options
-const config_moist = {
-  type: "line",
-  data: data_moist,
-  options: {},
-};
 
 const data_hum = {
   labels: timePart,
@@ -147,7 +129,6 @@ const config_hum = {
 };
 new Chart(document.getElementById("humidity_graph"), config_hum);
 
-new Chart(document.getElementById("moisture_graph"), config_moist);
 const data_temp = {
   labels: timePart,
   datasets: [
@@ -209,3 +190,26 @@ const config_precip = {
   options: {},
 };
 new Chart(document.getElementById("precipitation_graph"), config_precip);
+
+
+const data_moist = {
+  labels: timePart,
+  datasets: [
+    {
+      label: "Date : " + datePart,
+      data: moisture,
+      fill: false,
+      borderColor: "rgb(75, 192, 192)",
+      tension: 0.1,
+    },
+  ],
+};
+
+// Configuration options
+const config_moist = {
+  type: "line",
+  data: data_moist,
+  options: {},
+};
+
+new Chart(document.getElementById("moisture_graph"), config_moist);

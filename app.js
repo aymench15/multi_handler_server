@@ -36,4 +36,4 @@ app.use(route_data);
 
 app.listen(3000);
 
-console.log("http://localhost:3000");
+console.log("http://localhost:3000/login");

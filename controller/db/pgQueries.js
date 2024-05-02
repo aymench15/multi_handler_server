@@ -81,6 +81,7 @@ module.exports.getLatLng = async (id_device) => {
 };
 
 module.exports.selectAlldata = async () => {
+  // get all data using the two tables to get only the current region data for each prototype and only one instance.
   const res =
     await client.query(`SELECT i.device_id AS device_id, i.lat, i.long, r.region_name, r.lat, r.long, r.the_time FROM iot_device AS i JOIN LATERAL (SELECT device_id, lat, long, region_name, the_time FROM current_region WHERE device_id = i.device_id ORDER BY the_time DESC LIMIT 1) AS r ON true;
   `);

@@ -15,6 +15,7 @@ route.get('/moisture',api.moisture);
 route.get('/temperature',api.temperature);
 route.get('/humidity',api.humidity);
 route.get('/windspeed',api.windspeed);
+route.get('/login',api.login);
 //route.get('/',api.home);
 //route.post('/search',search_controller.postSearch);
 //route.get('/send',process_controller.getSend);

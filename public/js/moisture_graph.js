@@ -17,5 +17,6 @@ const data_moisture_page = {
     data: data_moisture_page,
     options: {},
   };
+  console.log('======',data_moisture_page)
   new Chart(document.getElementById("moisture_page_graph"), config_moisture_page);
   
