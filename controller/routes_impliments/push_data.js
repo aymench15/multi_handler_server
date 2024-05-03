@@ -213,7 +213,7 @@ module.exports.post_login = async (req, res) => {
   });
 };
 
-module.exports.getSignOut = (req, res) => {
+module.exports.logout = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.status(200).redirect("/");
 };
