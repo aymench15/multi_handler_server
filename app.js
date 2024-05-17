@@ -5,6 +5,7 @@ const session = require("express-session");
 const routes = require("./routes/routes");
 const route_data = require("./routes/db_apis");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 require("dotenv").config();
 const app = express();
 
@@ -37,3 +38,15 @@ app.use(route_data);
 app.listen(3000);
 
 console.log("http://localhost:3000/login");
+
+// const inserting = async () =>{
+//   const password = 'univ-biskra2024'
+//   const salt = await bcrypt.genSalt(10);
+// const hashpass = await bcrypt.hash(password , salt);
+// const result = await client.query(`Insert into admin_log(password)VALUES($1)`,[hashpass]);
+
+// if(result[1] == 0 )throw Error
+// console.log('account inserted succefully')
+// }
+// inserting();
+
