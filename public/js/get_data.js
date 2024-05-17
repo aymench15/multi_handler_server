@@ -134,7 +134,6 @@ class Buttons {
 
 
 const log_out = async ()=>{
-  console.log('hiiii11111111111111')
   await fetch("/logout").then((res) =>{
     console.log(res.json());
   }).catch((err)=>{console.log(err)})

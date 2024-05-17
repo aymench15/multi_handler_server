@@ -217,6 +217,7 @@ module.exports.logout = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.status(200).redirect("/");
 };
+
 // const csvFilePath = 'Hadjeb.csv'; // Replace this with your CSV file path
 
 // // Read the CSV file line by line

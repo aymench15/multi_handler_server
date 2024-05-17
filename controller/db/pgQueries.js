@@ -6,8 +6,8 @@ module.exports.existingDevice = async (deviceId) => {
     [deviceId]
   );
   if (existing.rowCount === 0) {
-    console.error("Error: Device does not exist.");
-    await client.query("ROLLBACK");
+    // console.error("Error: Device does not exist.");
+    // await client.query("ROLLBACK");
     return 0;
   }
   //console.log(res.rows[0].Founded);
@@ -73,12 +73,22 @@ module.exports.insert_current_data = async (
 
 module.exports.getLatLng = async (id_device) => {
   var res = await client.query(
-    `SELECT lat,long FROM current_region where device_id=${id_device};`
+    `SELECT lat,long FROM iot_device where device_id=${id_device};`
   );
   if (res[1]) throw err;
 
   return res.rows[res.rows.length - 1];
 };
+module.exports.getCurrent_region_by_id = async (id_device) => {
+  var res = await client.query(
+    `SELECT region_name,lat,long FROM current_region where device_id=${id_device};`
+  );
+  if (res[1]) throw err;
+
+  return res.rows[res.rows.length - 1];
+};
+
+
 
 module.exports.selectAlldata = async () => {
   // get all data using the two tables to get only the current region data for each prototype and only one instance.
@@ -171,6 +181,14 @@ module.exports.selectModeldata = async () => {
   return res.rows;
 };
 
+module.exports.getWeatherData = async (id) => {
+  const res =
+    await client.query(`SELECT temperature,humidity,dew_points,windspeed,wind_direction,precipitation,soil_moisture FROM data_forecasting where device_id =${id} ORDER BY timestamp DESC LIMIT 1 ;
+  `);
+  //console.log(res.rows[0].Founded);
+  if (res[1]) throw err;
+  return res.rows;
+};
 
 module.exports.login = async () =>{
   const res = await client.query(

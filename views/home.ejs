@@ -123,7 +123,9 @@
           .getElementById("fileInput")
           .addEventListener("change", handleFileSelect);
         function handleFileSelect(event) {
+          console.log('start !');
           const file = event.target.files[0];
+          console.log('file: ' + file)
           if (!file) {
             return;
           }
@@ -157,7 +159,7 @@
               const precipitation = parseFloat(row[7]);
               const soil_moisture = parseFloat(row[8]);
               const dew_points = parseFloat(row[9]);
-              const uv_index = 2;
+              const uv_index = parseFloat(row[10]);;
               console.log(device_id, lat, long);
               // Send data to server using fetch API
               fetch("/push_data", {
@@ -195,6 +197,7 @@
 
             // Call sendDataToServer function every second
             const interval = setInterval(sendDataToServer, 1000);
+            //sendDataToServer
           };
 
           reader.readAsText(file);
@@ -437,8 +440,8 @@
                 height="30px"
                 width="30px"
                 src="/svg/cando.svg"
-                data-holder-rendered="true"
-              />What You can do
+                data-holder-rendered="true"/>
+                What You can do
             </h2>
           </div>
         </div>
