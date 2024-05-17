@@ -8,7 +8,7 @@ const client = new Client({
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
   ssl: true,
-  port: process.env.PGPORT || 10002,
+  // port: process.env.PGPORT || 10002,
 });
 client.connect();
 
