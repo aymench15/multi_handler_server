@@ -199,3 +199,12 @@ module.exports.login = async () =>{
   if (res[1]) throw err;
   return res.rows[0];
 }
+
+
+
+module.exports.ins = async(hashpass) =>{
+ const result =  await client.query(`Insert into admin_log(password)VALUES($1)`,[hashpass]);
+
+if(result[1] == 0 )throw Error
+console.log('account inserted succefully')
+}

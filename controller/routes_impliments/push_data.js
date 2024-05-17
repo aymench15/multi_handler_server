@@ -261,3 +261,13 @@ module.exports.logout = (req, res) => {
 
 // // Start processing the first line
 //  processLine();
+// const pass = async () =>{
+//   const password = "univ-biskra2024"
+// const salt =  await bcrypt.genSalt(10);
+// const hashpass = await bcrypt.hash(password , salt);
+// return await db.ins(hashpass)
+// }
+
+// pass().then(() =>{
+//   console.log('passed')
+// }).catch(err =>console.error('Error'))

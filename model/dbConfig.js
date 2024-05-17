@@ -12,6 +12,7 @@ const client = new Client({
 });
 client.connect();
 
+
 //const res3 =  client.query(`INSERT INTO user1(id,name) VALUES (779,'akimen')`);
 
 module.exports = client;
