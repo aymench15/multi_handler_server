@@ -2,8 +2,6 @@ const db = require("../db/pgQueries");
 const ft = require("../features_functionalities/auto_completion");
 const axios = require("axios");
 const check = require("../features_functionalities/check_lat_long");
-const fs = require("fs");
-const readline = require("readline");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 module.exports.pushData_api = async (req, res) => {
