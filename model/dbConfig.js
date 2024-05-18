@@ -2,16 +2,17 @@ const { Client } = require("pg");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const connectionString = `postgres://${process.env.PGUSERR}:${process.env.PGPASSWORDD}@${process.env.PGHOSTT}/${process.env.PGDATABASEE}`;
 const client = new Client({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
+  // user: process.env.PGUSERR,
+  // host: process.env.PGHOSTT,
+  // database: process.env.PGDATABASEE,
+  // password: process.env.PGPASSWORDD,
+  // port: process.env.PGPORTT,
   ssl: true,
-  // port: process.env.PGPORT || 10002,
+  connectionString: connectionString,
 });
 client.connect();
-
 
 //const res3 =  client.query(`INSERT INTO user1(id,name) VALUES (779,'akimen')`);
 

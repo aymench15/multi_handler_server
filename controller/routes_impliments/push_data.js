@@ -259,8 +259,19 @@ module.exports.logout = (req, res) => {
 //   });
 // }
 
+
 // // Start processing the first line
 //  processLine();
+
+
+
+
+
+
+
+// push admin password
+
+
 // const pass = async () =>{
 //   const password = "univ-biskra2024"
 // const salt =  await bcrypt.genSalt(10);
