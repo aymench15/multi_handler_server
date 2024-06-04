@@ -37,7 +37,7 @@ app.use(route_data);
 
 app.listen(80);
 
-console.log("https://nervous-field-93678.pktriot.net/");
+console.log("Server started succefully , listening...");
 
 
 
