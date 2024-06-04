@@ -5,6 +5,9 @@ Lighter Dark (Footer):  #448087
 Light Contrast (Jumbotron):  #eaf5cf
 */
 
+/* body{
+    background-color: #eaf5cf;
+} */
 a, button {
     outline: 0;
     color: white;
@@ -17,6 +20,9 @@ a, button {
 
 
 header > .jumbotron {
+    background-color: #eaf5cf;
+}
+.jumbotron{
     background-color: #eaf5cf;
 }
 

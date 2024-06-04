@@ -35,9 +35,9 @@ app.use((req, res, next) => {
 app.use(routes);
 app.use(route_data);
 
-app.listen(3000);
+app.listen(80);
 
-console.log("http://localhost:3000/login");
+console.log("https://nervous-field-93678.pktriot.net/");
 
 
 

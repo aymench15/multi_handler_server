@@ -115,17 +115,17 @@
     <%- include('partials/decore.ejs') %> <%-
     include('partials/jumbotron.ejs')%>
 
-    <section>
+    <section style=" background-color: #eaf5cf">
       <!-- <button id="test_api">test api</button> -->
-      <input type="file" id="fileInput" accept=".csv" />
+      <!-- <input type="file" id="fileInput" accept=".csv" /> -->
       <script>
         document
           .getElementById("fileInput")
           .addEventListener("change", handleFileSelect);
         function handleFileSelect(event) {
-          console.log('start !');
+          console.log("start !");
           const file = event.target.files[0];
-          console.log('file: ' + file)
+          console.log("file: " + file);
           if (!file) {
             return;
           }
@@ -159,7 +159,7 @@
               const precipitation = parseFloat(row[7]);
               const soil_moisture = parseFloat(row[8]);
               const dew_points = parseFloat(row[9]);
-              const uv_index = parseFloat(row[10]);;
+              const uv_index = parseFloat(row[10]);
               console.log(device_id, lat, long);
               // Send data to server using fetch API
               fetch("/push_data", {
@@ -412,7 +412,7 @@
             <ul id="list"></ul>
           </div>
         </form>
-        <div class="scrollable-table">
+        <div class="scrollable-table" style="background-color: white;">
           <table class="table" id="deviceTable">
             <thead>
               <tr>
@@ -440,8 +440,9 @@
                 height="30px"
                 width="30px"
                 src="/svg/cando.svg"
-                data-holder-rendered="true"/>
-                What You can do
+                data-holder-rendered="true"
+              />
+              What You can do
             </h2>
           </div>
         </div>

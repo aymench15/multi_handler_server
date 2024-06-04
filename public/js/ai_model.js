@@ -26,7 +26,7 @@ new_model_btn.addEventListener("click", async (e) => {
     console.log("file ", file);
     const formData = new FormData();
     formData.append("file", file);
-    const response = await fetch("http://127.0.0.1:8000/change_model", {
+    const response = await fetch("https://boufaroua-ai-models.onrender.com/add_new_model", {
       method: "POST",
       body: formData,
     });
@@ -36,8 +36,9 @@ new_model_btn.addEventListener("click", async (e) => {
     }
 
     response.text().then(async (data) => {
-      if (data == "deployed successfully") {
-        console.log("deployed successfully ", data);
+      console.log('data = ',data);
+      if (data == "new model added successfully") {
+        console.log("new model added successfully ", data);
         try {
           const response = await fetch("/push_model", {
             method: "POST",
@@ -133,7 +134,8 @@ const get_models = (data) => {
         console.log("file ", file);
         const formData = new FormData();
         formData.append("file", file);
-        const response = await fetch("http://127.0.0.1:8000/change_model", {
+        // https://multi-handler-server.onrender.com/
+        const response = await fetch("https://boufaroua-ai-models.onrender.com/change_model", {
           method: "POST",
           body: formData,
         });
